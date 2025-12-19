@@ -678,62 +678,49 @@ const LazyMedia = {
 
 /**
  * Pop-up Publicitaire Module
- * - S'affiche UNE SEULE FOIS par session
- * - Se déclenche au premier scroll de l'utilisateur
+ * - S'affiche à chaque chargement de page (maquette)
+ * - Se déclenche au premier scroll
  */
 const PopupAd = {
     popup: null,
     closeBtn: null,
     ctaBtn: null,
+    soundBtn: null,
     video: null,
-    scrollHandler: null,
 
     init() {
-        // Éléments du DOM
         this.popup = document.getElementById('popup');
         if (!this.popup) return;
 
-        // Vérifier si déjà affiché cette session
-        if (sessionStorage.getItem('popupShown') === 'true') return;
-
         this.closeBtn = document.getElementById('popup-close');
         this.ctaBtn = document.getElementById('popup-cta');
+        this.soundBtn = document.getElementById('popup-sound');
         this.video = document.getElementById('popup-video');
 
         this.bindCloseEvents();
+        this.bindSoundToggle();
         this.waitForScroll();
     },
 
     waitForScroll() {
-        // Handler simple : au premier scroll, afficher le popup
-        this.scrollHandler = () => {
-            // Retirer immédiatement l'écouteur
-            window.removeEventListener('scroll', this.scrollHandler);
-
-            // Petit délai pour ne pas interrompre le scroll
+        window.addEventListener('scroll', () => {
             setTimeout(() => this.open(), 300);
-        };
-
-        window.addEventListener('scroll', this.scrollHandler, { once: true, passive: true });
+        }, { once: true, passive: true });
     },
 
     bindCloseEvents() {
-        // Bouton fermer
         if (this.closeBtn) {
             this.closeBtn.addEventListener('click', () => this.close());
         }
 
-        // Bouton CTA
         if (this.ctaBtn) {
             this.ctaBtn.addEventListener('click', () => this.close());
         }
 
-        // Clic sur l'overlay
         this.popup.addEventListener('click', (e) => {
             if (e.target === this.popup) this.close();
         });
 
-        // Touche Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.popup.classList.contains('active')) {
                 this.close();
@@ -741,38 +728,29 @@ const PopupAd = {
         });
     },
 
-    open() {
-        // Marquer comme affiché immédiatement
-        sessionStorage.setItem('popupShown', 'true');
+    bindSoundToggle() {
+        if (this.soundBtn && this.video) {
+            this.soundBtn.addEventListener('click', () => {
+                this.video.muted = !this.video.muted;
+                this.soundBtn.classList.toggle('active', !this.video.muted);
+            });
+        }
+    },
 
-        // Afficher le popup
+    open() {
         this.popup.classList.add('active');
         document.body.classList.add('locked');
 
-        // Jouer la vidéo
         if (this.video) {
             this.video.currentTime = 0;
-
-            // D'abord essayer en muet (toujours autorisé par les navigateurs)
             this.video.muted = true;
+            this.video.volume = 0.7;
+            this.video.play().catch(() => {});
+        }
 
-            const playPromise = this.video.play();
-
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    // La vidéo joue, maintenant essayer d'activer le son
-                    // (nécessite une interaction utilisateur préalable)
-                    setTimeout(() => {
-                        this.video.muted = false;
-                        this.video.volume = 0.7;
-                    }, 200);
-                }).catch((error) => {
-                    console.log('Autoplay bloqué:', error);
-                    // Forcer la lecture au prochain clic
-                    this.video.muted = true;
-                    this.video.play().catch(() => {});
-                });
-            }
+        // Reset sound button state
+        if (this.soundBtn) {
+            this.soundBtn.classList.remove('active');
         }
     },
 
@@ -780,7 +758,6 @@ const PopupAd = {
         this.popup.classList.remove('active');
         document.body.classList.remove('locked');
 
-        // Mettre la vidéo en pause et reset
         if (this.video) {
             this.video.pause();
             this.video.currentTime = 0;
