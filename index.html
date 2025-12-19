@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Le Sayour - Restaurant Libanais à Abidjan. Une nouvelle adresse qui redéfinit l'art de la table. Fruits de mer frais, cuisine libanaise authentique.">
+    <meta name="keywords" content="Le Sayour, restaurant libanais, Abidjan, fruits de mer, cuisine libanaise, restaurant Abidjan">
+    <title>Le Sayour | Restaurant Libanais - Abidjan</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <img src="assets/logo.png" alt="Le Sayour">
+            </div>
+            <div class="preloader-progress">
+                <div class="preloader-bar"></div>
+            </div>
+            <span class="preloader-text">Chargement</span>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="nav-logo">
+                <img src="assets/logo.png" alt="Le Sayour">
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active" data-text="Accueil">Accueil</a></li>
+                <li><a href="#about" class="nav-link" data-text="À Propos">À Propos</a></li>
+                <li><a href="#experience" class="nav-link" data-text="Expérience">Expérience</a></li>
+                <li><a href="#events" class="nav-link" data-text="Événements">Événements</a></li>
+                <li><a href="#contact" class="nav-link" data-text="Contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="tel:0716166666" class="nav-phone">
+                    <span class="phone-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                    </span>
+                    <span class="phone-text">Réserver</span>
+                </a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-list">
+                <li><a href="#home" class="mobile-nav-link">Accueil</a></li>
+                <li><a href="#about" class="mobile-nav-link">À Propos</a></li>
+                <li><a href="#experience" class="mobile-nav-link">Expérience</a></li>
+                <li><a href="#events" class="mobile-nav-link">Événements</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-footer">
+                <a href="tel:0716166666" class="mobile-phone">07 16 16 66 66</a>
+                <a href="https://www.instagram.com/lesayour_abidjan/" target="_blank" class="mobile-social">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    @lesayour_abidjan
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-media">
+                <video autoplay muted loop playsinline id="hero-video" class="hero-video">
+                    <source src="assets/inside the kitchen with the best chef.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-badge" data-aos="fade-down">
+                    <span class="badge-star">★★★★★</span>
+                    <span class="badge-text">5.0 Google</span>
+                </div>
+
+                <h1 class="hero-title" data-aos="fade-up">
+                    <span class="title-line">
+                        <span class="title-word">Le</span>
+                    </span>
+                    <span class="title-line">
+                        <span class="title-word accent">Sayour</span>
+                    </span>
+                </h1>
+
+                <p class="hero-tagline" data-aos="fade-up" data-aos-delay="200">
+                    <span class="tagline-decorator"></span>
+                    Toujours Frais
+                    <span class="tagline-decorator"></span>
+                </p>
+
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
+                    Une nouvelle adresse qui redéfinit<br>l'art de la table à Abidjan
+                </p>
+
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="600">
+                    <a href="#about" class="btn btn-primary">
+                        <span>Découvrir</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <span>Réserver</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-scroll">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+
+            <div class="hero-socials">
+                <a href="https://www.instagram.com/lesayour_abidjan/" target="_blank" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="about-bg">
+                <div class="floating-text">CUISINE LIBANAISE</div>
+            </div>
+
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-visual">
+                        <div class="about-image-wrapper" data-aos="fade-right">
+                            <div class="about-image">
+                                <img src="assets/Un goût de mer qui fait voyager.jpg" alt="Plat signature Le Sayour">
+                            </div>
+                            <div class="about-image-frame"></div>
+                        </div>
+                        <div class="about-float-card" data-aos="fade-up" data-aos-delay="300">
+                            <span class="float-number">5.0</span>
+                            <span class="float-label">Note Google</span>
+                            <div class="float-stars">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="about-content" data-aos="fade-left">
+                        <span class="section-label">Notre Histoire</span>
+                        <h2 class="section-title">
+                            Un goût de mer<br>
+                            <span class="title-accent">qui fait voyager</span>
+                        </h2>
+                        <div class="about-text">
+                            <p>Le Sayour est bien plus qu'un simple restaurant. C'est une invitation au voyage culinaire, une immersion dans les saveurs authentiques de la cuisine libanaise.</p>
+                            <p>Notre philosophie ? <strong>"Toujours Frais"</strong>. Chaque jour, nous sélectionnons les meilleurs produits pour vous offrir une expérience gastronomique inoubliable.</p>
+                        </div>
+
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                        <path d="M2 17l10 5 10-5"></path>
+                                        <path d="M2 12l10 5 10-5"></path>
+                                    </svg>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Produits Frais</h4>
+                                    <p>Sélection quotidienne</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M12 6v6l4 2"></path>
+                                    </svg>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Cuisine Authentique</h4>
+                                    <p>Recettes traditionnelles</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Ambiance Unique</h4>
+                                    <p>Cadre élégant</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience" id="experience">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-label">Nos Spécialités</span>
+                    <h2 class="section-title">L'Expérience <span class="title-accent">Sayour</span></h2>
+                </div>
+
+                <div class="experience-showcase">
+                    <div class="showcase-video" data-aos="fade-up">
+                        <video autoplay muted loop playsinline class="video-player" data-lazy>
+                            <source src="assets/fruits de mer soigneusement conservés.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <h3>Fruits de mer</h3>
+                            <p>Soigneusement conservés</p>
+                        </div>
+                        <div class="video-decoration"></div>
+                    </div>
+
+                    <div class="showcase-cards">
+                        <div class="showcase-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="card-number">01</div>
+                            <h4>Mezze Libanais</h4>
+                            <p>Houmous, taboulé, fattouch et autres délices traditionnels</p>
+                            <div class="card-line"></div>
+                        </div>
+                        <div class="showcase-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="card-number">02</div>
+                            <h4>Fruits de Mer</h4>
+                            <p>Poissons grillés, crevettes et crustacés d'une fraîcheur incomparable</p>
+                            <div class="card-line"></div>
+                        </div>
+                        <div class="showcase-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="card-number">03</div>
+                            <h4>Grillades</h4>
+                            <p>Viandes marinées et grillées selon les traditions du Liban</p>
+                            <div class="card-line"></div>
+                        </div>
+                        <div class="showcase-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="card-number">04</div>
+                            <h4>Desserts</h4>
+                            <p>Baklavas, knafeh et douceurs orientales</p>
+                            <div class="card-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-marquee">
+                <div class="marquee-content">
+                    <span>Toujours Frais</span>
+                    <span class="marquee-dot"></span>
+                    <span>Cuisine Libanaise</span>
+                    <span class="marquee-dot"></span>
+                    <span>Fruits de Mer</span>
+                    <span class="marquee-dot"></span>
+                    <span>Mezze</span>
+                    <span class="marquee-dot"></span>
+                    <span>Toujours Frais</span>
+                    <span class="marquee-dot"></span>
+                    <span>Cuisine Libanaise</span>
+                    <span class="marquee-dot"></span>
+                    <span>Fruits de Mer</span>
+                    <span class="marquee-dot"></span>
+                    <span>Mezze</span>
+                    <span class="marquee-dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="events" id="events">
+            <div class="events-bg-text">EVENTS</div>
+
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-label">Moments Uniques</span>
+                    <h2 class="section-title">Nos <span class="title-accent">Événements</span></h2>
+                    <p class="section-description">Découvrez les moments forts qui font de Le Sayour un lieu d'exception</p>
+                </div>
+
+                <!-- Featured Event - Full Width -->
+                <div class="event-showcase" data-aos="fade-up">
+                    <div class="event-showcase-media">
+                        <video autoplay muted loop playsinline class="event-showcase-video" data-lazy>
+                            <source src="assets/events/recent events/prestation de la star ibrahim farhat/event card cover.mp4" type="video/mp4">
+                        </video>
+                        <div class="event-showcase-overlay"></div>
+
+                        <!-- Floating Gallery Preview -->
+                        <div class="event-gallery-preview">
+                            <div class="gallery-preview-item" data-index="0">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/ibrahim farhat pose.jpg" alt="Ibrahim Farhat">
+                            </div>
+                            <div class="gallery-preview-item" data-index="1">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/galery 1.jpg" alt="Soirée">
+                            </div>
+                            <div class="gallery-preview-item" data-index="2">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/galery 2.jpg" alt="Ambiance">
+                            </div>
+                            <div class="gallery-preview-more" id="open-gallery">
+                                <span>+2</span>
+                                <span>Photos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-showcase-content">
+                        <div class="event-showcase-header">
+                            <span class="event-date">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                Événement Récent
+                            </span>
+                            <div class="event-rating">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+
+                        <h3 class="event-showcase-title">
+                            <span>Prestation de la star</span>
+                            <span class="title-highlight">Ibrahim Farhat</span>
+                        </h3>
+
+                        <p class="event-showcase-desc">Une soirée inoubliable où la star Ibrahim Farhat a enflammé Le Sayour avec ses plus grands hits. Une ambiance électrique, des moments de partage et de joie qui resteront gravés dans les mémoires.</p>
+
+                        <div class="event-showcase-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">200+</span>
+                                <span class="stat-label">Invités</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4h</span>
+                                <span class="stat-label">De show</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Satisfaction</span>
+                            </div>
+                        </div>
+
+                        <div class="event-showcase-actions">
+                            <button class="btn btn-primary" id="open-gallery-btn">
+                                <span>Explorer la galerie</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                            </button>
+                            <button class="btn btn-outline-dark" id="play-video-btn">
+                                <span>Voir le recap</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter Section -->
+                <div class="events-newsletter" data-aos="fade-up">
+                    <div class="newsletter-visual">
+                        <img src="assets/events/upcoming events/souscrivez à la newsletters pour ne manquer aucun évènement.png" alt="Newsletter">
+                        <div class="newsletter-visual-overlay"></div>
+                    </div>
+                    <div class="newsletter-box">
+                        <div class="newsletter-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Ne manquez aucun événement</h3>
+                        <p>Soyez les premiers informés de nos soirées exclusives, artistes invités et événements spéciaux.</p>
+                        <form class="newsletter-form" id="newsletter-form">
+                            <div class="form-group">
+                                <input type="email" placeholder="Entrez votre email" required>
+                                <button type="submit">
+                                    <span>S'inscrire</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                        <span class="newsletter-note">Rejoignez +500 abonnés. Pas de spam, promis.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Modal - Redesigned -->
+            <div class="gallery-modal" id="gallery-modal">
+                <div class="gallery-modal-backdrop"></div>
+                <div class="gallery-modal-container">
+                    <div class="gallery-modal-header">
+                        <div class="gallery-modal-title">
+                            <span class="gallery-tag">Galerie</span>
+                            <h3>Soirée Ibrahim Farhat</h3>
+                        </div>
+                        <button class="gallery-modal-close" id="close-gallery">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="gallery-modal-content">
+                        <!-- Main Image Viewer -->
+                        <div class="gallery-viewer">
+                            <button class="gallery-nav gallery-prev" id="gallery-prev">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </button>
+                            <div class="gallery-main-image">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/ibrahim farhat pose.jpg" alt="Ibrahim Farhat" id="gallery-main-img">
+                            </div>
+                            <button class="gallery-nav gallery-next" id="gallery-next">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                            <div class="gallery-counter">
+                                <span id="gallery-current">1</span> / <span id="gallery-total">4</span>
+                            </div>
+                        </div>
+
+                        <!-- Thumbnails -->
+                        <div class="gallery-thumbnails">
+                            <div class="gallery-thumb active" data-index="0">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/ibrahim farhat pose.jpg" alt="Ibrahim Farhat">
+                            </div>
+                            <div class="gallery-thumb" data-index="1">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/galery 1.jpg" alt="Soirée">
+                            </div>
+                            <div class="gallery-thumb" data-index="2">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/galery 2.jpg" alt="Ambiance">
+                            </div>
+                            <div class="gallery-thumb" data-index="3">
+                                <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/galery 3.jpg" alt="Public">
+                            </div>
+                        </div>
+
+                        <!-- Video Section -->
+                        <div class="gallery-video-section">
+                            <div class="video-section-container">
+                                <div class="video-section-info">
+                                    <div class="video-section-header">
+                                        <div class="video-section-title">
+                                            <span class="video-badge">Vidéo</span>
+                                            <h4>Retour en images</h4>
+                                        </div>
+                                        <p class="video-section-desc">Revivez les meilleurs moments de cette soirée exceptionnelle avec Ibrahim Farhat au Sayour.</p>
+                                    </div>
+                                    <div class="video-meta">
+                                        <div class="video-meta-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polyline points="12 6 12 12 16 14"></polyline>
+                                            </svg>
+                                            <span>2:30</span>
+                                        </div>
+                                        <div class="video-meta-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                            </svg>
+                                            <span>HD 1080p</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gallery-video-wrapper" id="video-wrapper">
+                                    <div class="video-poster" id="video-poster">
+                                        <img src="assets/events/recent events/prestation de la star ibrahim farhat/event details/ibrahim farhat pose.jpg" alt="Recap vidéo">
+                                        <div class="video-poster-overlay"></div>
+                                        <button class="video-play-btn" id="play-recap-btn">
+                                            <div class="play-btn-circle">
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <polygon points="8 5 20 12 8 19 8 5"></polygon>
+                                                </svg>
+                                            </div>
+                                            <span class="play-btn-text">Lecture</span>
+                                        </button>
+                                        <div class="video-duration">
+                                            <span>2:30</span>
+                                        </div>
+                                    </div>
+                                    <video controls id="gallery-video" style="display: none;">
+                                        <source src="assets/events/recent events/prestation de la star ibrahim farhat/event details/Retour en images sur la prestation de ibrahim farhat.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pop-up Publicitaire -->
+        <div class="popup-overlay" id="popup">
+            <div class="popup-container">
+                <button class="popup-close" id="popup-close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="popup-content">
+                    <video autoplay muted loop playsinline class="popup-video" id="popup-video">
+                        <source src="assets/pop up add.mp4" type="video/mp4">
+                    </video>
+                    <div class="popup-info">
+                        <span class="popup-badge">Le Sayour</span>
+                        <h3>Découvrez notre restaurant</h3>
+                        <p>Une expérience culinaire libanaise unique à Abidjan</p>
+                        <a href="#contact" class="btn btn-primary popup-cta" id="popup-cta">
+                            <span>Réserver maintenant</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info" data-aos="fade-right">
+                        <span class="section-label">Réservation</span>
+                        <h2 class="section-title">Venez nous<br><span class="title-accent">découvrir</span></h2>
+
+                        <div class="contact-details">
+                            <a href="tel:0716166666" class="contact-item contact-phone">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-text">
+                                    <span class="contact-label">Téléphone</span>
+                                    <span class="contact-value">07 16 16 66 66</span>
+                                </div>
+                            </a>
+
+                            <a href="mailto:direction@lesayour.ci" class="contact-item">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="contact-text">
+                                    <span class="contact-label">Email</span>
+                                    <span class="contact-value">direction@lesayour.ci</span>
+                                </div>
+                            </a>
+
+                            <a href="https://www.google.com/maps/place/Le+Sayour/@5.2762971,-3.9777301,17z" target="_blank" class="contact-item">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <div class="contact-text">
+                                    <span class="contact-label">Adresse</span>
+                                    <span class="contact-value">Rue Anouma Pierre, Abidjan</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="contact-hours">
+                            <h4>Horaires</h4>
+                            <div class="hours-grid">
+                                <div class="hours-item closed">
+                                    <span>Lundi</span>
+                                    <span>Fermé</span>
+                                </div>
+                                <div class="hours-item">
+                                    <span>Mar - Dim</span>
+                                    <span>11h30 - 23h30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-map" data-aos="fade-left">
+                        <div class="map-wrapper">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.5!2d-3.9777301!3d5.2762971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1ef62d3f208c9%3A0x5f321575cc76532!2sLe%20Sayour!5e0!3m2!1sfr!2sci!4v1703000000000!5m2!1sfr!2sci"
+                                allowfullscreen=""
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="Le Sayour" class="footer-logo">
+                    <p>Une nouvelle adresse qui redéfinit l'art de la table à Abidjan.</p>
+                </div>
+
+                <div class="footer-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#about">À Propos</a></li>
+                        <li><a href="#experience">Expérience</a></li>
+                        <li><a href="#events">Événements</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:0716166666">07 16 16 66 66</a></li>
+                        <li><a href="mailto:direction@lesayour.ci">direction@lesayour.ci</a></li>
+                        <li><span>Rue Anouma Pierre, Abidjan</span></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Suivez-nous</h4>
+                    <a href="https://www.instagram.com/lesayour_abidjan/" target="_blank" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        <span>@lesayour_abidjan</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Le Sayour. Tous droits réservés.</p>
+                <p class="footer-tagline">Restaurant Libanais - Toujours Frais</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
