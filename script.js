@@ -3,6 +3,29 @@
  * JavaScript - Animations & Interactions
  */
 
+// Cache Buster - Force reload sans cache
+(function() {
+    // Ajouter un timestamp à toutes les ressources pour éviter le cache
+    const timestamp = Date.now();
+
+    // Recharger les CSS avec cache bust
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.includes('fonts.googleapis.com') && !href.includes('?')) {
+            link.setAttribute('href', href + '?v=' + timestamp);
+        }
+    });
+
+    // Désactiver le cache pour les requêtes
+    if ('caches' in window) {
+        caches.keys().then(names => {
+            names.forEach(name => {
+                caches.delete(name);
+            });
+        });
+    }
+})();
+
 // Wait for DOM
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all modules
@@ -22,11 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
 const Preloader = {
     preloader: null,
     bar: null,
+    percent: null,
     progress: 0,
 
     init() {
         this.preloader = document.getElementById('preloader');
         this.bar = document.querySelector('.preloader-bar');
+        this.percent = document.querySelector('.preloader-percent');
 
         if (!this.preloader) return;
 
@@ -65,6 +90,9 @@ const Preloader = {
         this.progress = Math.min(value, 100);
         if (this.bar) {
             this.bar.style.width = `${this.progress}%`;
+        }
+        if (this.percent) {
+            this.percent.textContent = `${Math.round(this.progress)}%`;
         }
     },
 
@@ -629,46 +657,62 @@ const LazyMedia = {
 
 /**
  * Pop-up Publicitaire Module
+ * - S'affiche UNE SEULE FOIS par session
+ * - Se déclenche au premier scroll de l'utilisateur
  */
 const PopupAd = {
     popup: null,
     closeBtn: null,
     ctaBtn: null,
     video: null,
-    hasShown: false,
-    scrollThreshold: 0.25, // 25% de la page
+    scrollHandler: null,
 
     init() {
+        // Éléments du DOM
         this.popup = document.getElementById('popup');
+        if (!this.popup) return;
+
+        // Vérifier si déjà affiché cette session
+        if (sessionStorage.getItem('popupShown') === 'true') return;
+
         this.closeBtn = document.getElementById('popup-close');
         this.ctaBtn = document.getElementById('popup-cta');
         this.video = document.getElementById('popup-video');
 
-        if (!this.popup) return;
-
-        this.bindEvents();
-        this.setupScrollTrigger();
+        this.bindCloseEvents();
+        this.waitForScroll();
     },
 
-    bindEvents() {
-        // Fermer le popup
+    waitForScroll() {
+        // Handler simple : au premier scroll, afficher le popup
+        this.scrollHandler = () => {
+            // Retirer immédiatement l'écouteur
+            window.removeEventListener('scroll', this.scrollHandler);
+
+            // Petit délai pour ne pas interrompre le scroll
+            setTimeout(() => this.open(), 300);
+        };
+
+        window.addEventListener('scroll', this.scrollHandler, { once: true, passive: true });
+    },
+
+    bindCloseEvents() {
+        // Bouton fermer
         if (this.closeBtn) {
             this.closeBtn.addEventListener('click', () => this.close());
         }
 
-        // Fermer en cliquant sur le CTA
+        // Bouton CTA
         if (this.ctaBtn) {
             this.ctaBtn.addEventListener('click', () => this.close());
         }
 
-        // Fermer en cliquant sur l'overlay (mais pas sur le contenu)
+        // Clic sur l'overlay
         this.popup.addEventListener('click', (e) => {
-            if (e.target === this.popup) {
-                this.close();
-            }
+            if (e.target === this.popup) this.close();
         });
 
-        // Fermer avec Escape
+        // Touche Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.popup.classList.contains('active')) {
                 this.close();
@@ -676,32 +720,27 @@ const PopupAd = {
         });
     },
 
-    setupScrollTrigger() {
-        // Déclencher le popup une seule fois quand l'utilisateur scroll 25% de la page
-        const scrollHandler = throttle(() => {
-            if (this.hasShown) return;
-
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-
-            if (scrollPercent >= this.scrollThreshold) {
-                this.open();
-                this.hasShown = true;
-                // Retirer l'écouteur une fois le popup affiché
-                window.removeEventListener('scroll', scrollHandler);
-            }
-        }, 100);
-
-        window.addEventListener('scroll', scrollHandler, { passive: true });
-    },
-
     open() {
+        // Marquer comme affiché immédiatement
+        sessionStorage.setItem('popupShown', 'true');
+
+        // Afficher le popup
         this.popup.classList.add('active');
         document.body.classList.add('locked');
 
-        // Jouer la vidéo
+        // Jouer la vidéo avec le son
         if (this.video) {
+            this.video.muted = false;
+            this.video.volume = 0.7;
             this.video.currentTime = 0;
-            this.video.play().catch(() => {});
+
+            setTimeout(() => {
+                this.video.play().catch(() => {
+                    // Fallback : jouer en muet si autoplay bloqué
+                    this.video.muted = true;
+                    this.video.play().catch(() => {});
+                });
+            }, 100);
         }
     },
 
@@ -709,9 +748,10 @@ const PopupAd = {
         this.popup.classList.remove('active');
         document.body.classList.remove('locked');
 
-        // Mettre la vidéo en pause
+        // Mettre la vidéo en pause et reset
         if (this.video) {
             this.video.pause();
+            this.video.currentTime = 0;
         }
     }
 };

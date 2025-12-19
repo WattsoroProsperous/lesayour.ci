@@ -130,12 +130,30 @@ ul, ol {
 .preloader {
     position: fixed;
     inset: 0;
-    background: var(--primary);
+    background: linear-gradient(135deg, #0a1628 0%, #132240 50%, #0a1628 100%);
     z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s;
+    transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s;
+    overflow: hidden;
+}
+
+.preloader::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(200, 164, 94, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(200, 164, 94, 0.05) 0%, transparent 40%);
+    animation: preloaderGlow 8s ease-in-out infinite;
+}
+
+@keyframes preloaderGlow {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(5%, 5%) rotate(180deg); }
 }
 
 .preloader.hidden {
@@ -143,32 +161,150 @@ ul, ol {
     visibility: hidden;
 }
 
+.preloader.hidden .preloader-inner {
+    transform: translateY(-30px) scale(0.95);
+    opacity: 0;
+}
+
 .preloader-inner {
     text-align: center;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.6s var(--ease-out-expo), opacity 0.6s ease;
 }
 
 .preloader-logo {
     margin-bottom: 40px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-logo-circle {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.9) 100%);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: logoFloat 3s ease-in-out infinite;
+    box-shadow: 0 0 40px rgba(200, 164, 94, 0.3),
+                0 0 80px rgba(200, 164, 94, 0.15),
+                inset 0 0 20px rgba(200, 164, 94, 0.1);
+    overflow: hidden;
+}
+
+.preloader-logo-circle::before {
+    content: '';
+    position: absolute;
+    inset: -18px;
+    border: 1px solid rgba(200, 164, 94, 0.3);
+    border-radius: 50%;
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+.preloader-logo-circle::after {
+    content: '';
+    position: absolute;
+    inset: -36px;
+    border: 1px solid rgba(200, 164, 94, 0.15);
+    border-radius: 50%;
+    animation: logoPulse 2s ease-out infinite 0.5s;
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.2;
+    }
 }
 
 .preloader-logo img {
-    width: 150px;
-    height: auto;
-    filter: brightness(0) invert(1);
-    animation: pulse 2s ease-in-out infinite;
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    filter: none;
+    position: relative;
+    z-index: 1;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.02); }
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.preloader-content {
+    margin-bottom: 50px;
+}
+
+.preloader-text-main {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.3s;
+}
+
+.preloader-tagline {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 4px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .preloader-progress {
     width: 200px;
     height: 1px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 0 auto 20px;
-    overflow: hidden;
+    background: rgba(200, 164, 94, 0.2);
+    margin: 0 auto 25px;
+    overflow: visible;
+    position: relative;
+}
+
+.preloader-progress::before,
+.preloader-progress::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--accent);
+    background: var(--primary);
+}
+
+.preloader-progress::before {
+    left: -3px;
+}
+
+.preloader-progress::after {
+    right: -3px;
 }
 
 .preloader-bar {
@@ -176,12 +312,47 @@ ul, ol {
     height: 100%;
     background: var(--accent);
     transition: width 0.3s ease;
+    position: relative;
 }
 
-.preloader-text {
-    color: rgba(255, 255, 255, 0.5);
+.preloader-bar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(200, 164, 94, 0.8),
+                0 0 30px rgba(200, 164, 94, 0.4);
+}
+
+.preloader-percent {
+    font-family: var(--font-body);
     font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
     letter-spacing: 3px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.7s;
+}
+
+.preloader-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-size: clamp(12rem, 25vw, 20rem);
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(200, 164, 94, 0.03);
+    letter-spacing: 30px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
     text-transform: uppercase;
 }
 
@@ -224,14 +395,40 @@ ul, ol {
     height: 100%;
 }
 
+.nav-logo-circle {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.9) 100%);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all var(--duration-normal) ease;
+    box-shadow: 0 4px 15px rgba(200, 164, 94, 0.2);
+}
+
+.nav-logo-circle:hover {
+    box-shadow: 0 6px 25px rgba(200, 164, 94, 0.35);
+    transform: scale(1.05);
+}
+
 .nav-logo img {
-    height: 60px;
-    width: auto;
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
     transition: all var(--duration-normal) ease;
 }
 
+.header.scrolled .nav-logo-circle {
+    width: 55px;
+    height: 55px;
+}
+
 .header.scrolled .nav-logo img {
-    height: 50px;
+    width: 45px;
+    height: 45px;
 }
 
 .nav-menu {
@@ -2562,23 +2759,91 @@ ul, ol {
 }
 
 @media (max-width: 768px) {
+    .popup-overlay {
+        padding: 16px;
+        align-items: flex-start;
+        padding-top: 60px;
+    }
+
+    .popup-container {
+        max-width: 100%;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+
     .popup-content {
         grid-template-columns: 1fr;
     }
 
     .popup-video {
-        min-height: 250px;
+        min-height: 200px;
+        max-height: 35vh;
+        object-fit: cover;
     }
 
     .popup-info {
-        padding: 40px 30px;
+        padding: 28px 24px;
+    }
+
+    .popup-badge {
+        font-size: 0.5625rem;
+        padding: 6px 12px;
+        margin-bottom: 16px;
+    }
+
+    .popup-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .popup-info p {
+        font-size: 0.875rem;
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+
+    .popup-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 24px;
+        font-size: 0.75rem;
     }
 
     .popup-close {
-        top: 15px;
-        right: 15px;
-        width: 40px;
-        height: 40px;
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .popup-close svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-overlay {
+        padding: 12px;
+        padding-top: 50px;
+    }
+
+    .popup-video {
+        min-height: 180px;
+        max-height: 30vh;
+    }
+
+    .popup-info {
+        padding: 24px 20px;
+    }
+
+    .popup-info h3 {
+        font-size: 1.25rem;
+    }
+
+    .popup-info p {
+        font-size: 0.8125rem;
     }
 }
 
