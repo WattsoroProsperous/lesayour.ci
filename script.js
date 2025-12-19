@@ -749,19 +749,30 @@ const PopupAd = {
         this.popup.classList.add('active');
         document.body.classList.add('locked');
 
-        // Jouer la vidéo avec le son
+        // Jouer la vidéo
         if (this.video) {
-            this.video.muted = false;
-            this.video.volume = 0.7;
             this.video.currentTime = 0;
 
-            setTimeout(() => {
-                this.video.play().catch(() => {
-                    // Fallback : jouer en muet si autoplay bloqué
+            // D'abord essayer en muet (toujours autorisé par les navigateurs)
+            this.video.muted = true;
+
+            const playPromise = this.video.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // La vidéo joue, maintenant essayer d'activer le son
+                    // (nécessite une interaction utilisateur préalable)
+                    setTimeout(() => {
+                        this.video.muted = false;
+                        this.video.volume = 0.7;
+                    }, 200);
+                }).catch((error) => {
+                    console.log('Autoplay bloqué:', error);
+                    // Forcer la lecture au prochain clic
                     this.video.muted = true;
                     this.video.play().catch(() => {});
                 });
-            }, 100);
+            }
         }
     },
 
