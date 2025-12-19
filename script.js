@@ -3,27 +3,48 @@
  * JavaScript - Animations & Interactions
  */
 
-// Cache Buster - Force reload sans cache
+// Cache Buster - Écrase le cache à chaque chargement
 (function() {
-    // Ajouter un timestamp à toutes les ressources pour éviter le cache
+    // 1. Supprimer tous les caches du navigateur
+    if ('caches' in window) {
+        caches.keys().then(names => {
+            names.forEach(name => caches.delete(name));
+        });
+    }
+
+    // 2. Désactiver le cache du Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            registrations.forEach(registration => registration.unregister());
+        });
+    }
+
+    // 3. Forcer le rechargement des ressources (CSS, images, scripts)
     const timestamp = Date.now();
 
-    // Recharger les CSS avec cache bust
+    // CSS
     document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
         const href = link.getAttribute('href');
-        if (href && !href.includes('fonts.googleapis.com') && !href.includes('?')) {
-            link.setAttribute('href', href + '?v=' + timestamp);
+        if (href && !href.includes('fonts.googleapis.com')) {
+            const newHref = href.split('?')[0] + '?t=' + timestamp;
+            link.setAttribute('href', newHref);
         }
     });
 
-    // Désactiver le cache pour les requêtes
-    if ('caches' in window) {
-        caches.keys().then(names => {
-            names.forEach(name => {
-                caches.delete(name);
-            });
-        });
-    }
+    // Images
+    document.querySelectorAll('img').forEach(img => {
+        const src = img.getAttribute('src');
+        if (src && !src.startsWith('data:')) {
+            img.setAttribute('src', src.split('?')[0] + '?t=' + timestamp);
+        }
+    });
+
+    // 4. Empêcher la mise en cache via headers (pour les requêtes futures)
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options = {}) {
+        options.cache = 'no-store';
+        return originalFetch(url, options);
+    };
 })();
 
 // Wait for DOM
